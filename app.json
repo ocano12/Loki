@@ -1,16 +1,18 @@
 {
   "expo": {
-    "name": "loki",
-    "slug": "loki",
+    "name": "Inclusive Miami",
+    "slug": "inclusive-miami",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "loki",
+    "scheme": "inclusive-miami",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/expo.icon",
+      "bundleIdentifier": "com.inclusivemiami.app"
     },
     "android": {
+      "package": "com.inclusivemiami.app",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
