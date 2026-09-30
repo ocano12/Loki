@@ -1,5 +1,5 @@
 // https://docs.expo.dev/guides/using-supabase/
-// Provides a SQLite-backed `localStorage` on iOS/Android (no-op on web, which has its own).
+// Provides a SQLite-backed `localStorage` global that persists the session on device.
 import 'expo-sqlite/localStorage/install';
 
 import { createClient } from '@supabase/supabase-js';
@@ -14,13 +14,9 @@ if (!supabaseUrl || !supabasePublishableKey) {
   );
 }
 
-// During web static rendering there is no window/localStorage, so fall back to
-// supabase-js's in-memory storage there.
-const storage = typeof window !== 'undefined' ? globalThis.localStorage : undefined;
-
 export const supabase = createClient(supabaseUrl, supabasePublishableKey, {
   auth: {
-    storage,
+    storage: localStorage,
     autoRefreshToken: true,
     persistSession: true,
     // iOS/Android have no URL to read a session from; deep links are handled manually.
