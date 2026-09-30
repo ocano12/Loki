@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # Generates expo-env.d.ts and typed-route types, which `expo start` normally creates.
+      # https://docs.expo.dev/router/reference/typed-routes/
+      - run: pnpm expo customize tsconfig.json
+
+      - run: pnpm lint
+
+      - run: pnpm typecheck
