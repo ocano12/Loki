@@ -1,24 +1,44 @@
-/**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
- */
-
 import { Platform } from 'react-native';
 
+/** WeClude brand palette, sampled from assets/brand. Use the themed `Colors` below in UI code. */
+export const Brand = {
+  navy: '#253D89',
+  sky: '#88BCDA',
+  lime: '#D9E364',
+  coral: '#F28478',
+} as const;
+
+/**
+ * Light and dark themes. Every text/background pair meets WCAG AA (4.5:1).
+ * `accent` (coral) fails as text on white — use it for decoration only (icons, dots, borders).
+ */
 export const Colors = {
   light: {
-    text: '#000000',
-    background: '#ffffff',
-    backgroundElement: '#F0F0F3',
-    backgroundSelected: '#E0E1E6',
-    textSecondary: '#60646C',
+    text: '#15204A',
+    textSecondary: '#545E80',
+    background: '#FFFFFF',
+    backgroundElement: '#EEF3F9',
+    backgroundSelected: '#DCE7F3',
+    border: '#D3DCEA',
+    primary: Brand.navy,
+    onPrimary: '#FFFFFF',
+    accent: Brand.coral,
+    highlight: Brand.lime,
+    danger: '#B42F25',
   },
   dark: {
-    text: '#ffffff',
-    background: '#000000',
-    backgroundElement: '#212225',
-    backgroundSelected: '#2E3135',
-    textSecondary: '#B0B4BA',
+    text: '#FFFFFF',
+    textSecondary: '#AEB7D6',
+    background: '#0E1533',
+    backgroundElement: '#1A2350',
+    backgroundSelected: '#26326A',
+    border: '#2C3870',
+    // Navy disappears on a dark navy background, so sky takes the primary role in dark mode.
+    primary: Brand.sky,
+    onPrimary: '#0E1533',
+    accent: Brand.coral,
+    highlight: Brand.lime,
+    danger: '#FF8A7E',
   },
 } as const;
 

@@ -6,16 +6,18 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
 
-type TabScreenProps = PropsWithChildren<{ title: string }>;
+type TabScreenProps = PropsWithChildren<{ title?: string }>;
 
-/** Shared frame for top-level tab screens: safe area, title, max width. */
+/** Shared frame for top-level tab screens: safe area, optional title, max width. */
 export function TabScreen({ title, children }: TabScreenProps) {
   return (
     <ThemedView style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
-        <ThemedText type="subtitle" accessibilityRole="header">
-          {title}
-        </ThemedText>
+        {title ? (
+          <ThemedText type="subtitle" accessibilityRole="header">
+            {title}
+          </ThemedText>
+        ) : null}
         {children}
       </SafeAreaView>
     </ThemedView>
